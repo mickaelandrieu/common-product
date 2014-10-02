@@ -15,12 +15,16 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use InvalidArgumentException;
+use OutOfBoundsException;
 
 /**
  * @author Matthew Fitzgerald <matthewfitz@gmail.com>
  */
 class Product implements ProductInterface
 {
+    /** @var Doctrine\Common\Collections\Collection */
+    protected $attributes;
+
     /** @var DateTime */
     protected $createdAt;
 
@@ -64,7 +68,7 @@ class Product implements ProductInterface
     protected $updatedAt;
 
     /** @var Doctrine\Common\Collections\Collection */
-    protected $variants;
+    protected $variations;
 
     /** @var int */
     protected $weight;
@@ -74,8 +78,57 @@ class Product implements ProductInterface
 
     public function __construct()
     {
+        $this->attributes = new ArrayCollection();
         $this->images = new ArrayCollection();
-        $this->variants = new ArrayCollection();
+        $this->variations = new ArrayCollection();
+    }
+
+    /**
+     * @param AntiMattr\Common\Product\AttributeInterface
+     */
+    public function addAttribute(AttributeInterface $attribute)
+    {
+        $this->attributes->add($attribute);
+    }
+
+    /**
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @param AntiMattr\Common\Product\AttributeInterface
+     *
+     * @return bool
+     */
+    public function hasAttribute(AttributeInterface $attribute)
+    {
+        return $this->attributes->contains($attribute);
+    }
+
+    /**
+     * @param AntiMattr\Common\Product\AttributeInterface
+     *
+     * @throws OutOfBoundsException
+     */
+    public function removeAttribute(AttributeInterface $attribute)
+    {
+        $success = $this->attributes->removeElement($attribute);
+
+        if (!$success) {
+            throw new OutOfBoundsException('Product::attributes do not contain attribute to remove');
+        }
+    }
+
+    /**
+     * @param Doctrine\Common\Collections\Collection
+     */
+    public function setAttributes(Collection $attributes)
+    {
+        $this->attributes = $attributes;
     }
 
     /**
@@ -165,11 +218,14 @@ class Product implements ProductInterface
     }
 
     /**
-     * @param AntiMattr\Common\Product\Image
+     * @param AntiMattr\Common\Product\ImageInterface
      */
-    public function addImage(Image $image)
+    public function addImage(ImageInterface $image)
     {
         $this->images->add($image);
+        if ($this !== $image->getProduct()) {
+            $image->setProduct($this);
+        }
     }
 
     /**
@@ -181,13 +237,27 @@ class Product implements ProductInterface
     }
 
     /**
-     * @param AntiMattr\Common\Product\Image
+     * @param AntiMattr\Common\Product\ImageInterface
      *
      * @return bool
      */
-    public function hasImage(Image $image)
+    public function hasImage(ImageInterface $image)
     {
         return $this->images->contains($image);
+    }
+
+    /**
+     * @param AntiMattr\Common\Product\ImageInterface
+     *
+     * @throws OutOfBoundsException
+     */
+    public function removeImage(ImageInterface $image)
+    {
+        $success = $this->images->removeElement($image);
+
+        if (!$success) {
+            throw new OutOfBoundsException('Product::images do not contain image to remove');
+        }
     }
 
     /**
@@ -345,40 +415,84 @@ class Product implements ProductInterface
     }
 
     /**
-     * @param AntiMattr\Common\Product\Variant
+     * @param AntiMattr\Common\Product\VariationInterface
+     *
+     * @throws OutOfBoundsException
      */
-    public function addVariant(Variant $variant)
+    public function addVariation(VariationInterface $variation)
     {
-        $this->variants->add($variant);
-        if ($this !== $variant->getProduct()) {
-            $variant->setProduct($this);
+        if (false === $this->isVariationUnique($variation)) {
+            $message = sprintf(
+                "Product::variations already contain a Variation with a unique identifier %s",
+                $variation->getUniqueIdentifier()
+            );
+            throw new OutOfBoundsException($message);
+        }
+
+        $this->variations->add($variation);
+        if ($this !== $variation->getProduct()) {
+            $variation->setProduct($this);
         }
     }
 
     /**
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getVariants()
+    public function getVariations()
     {
-        return $this->variants;
+        return $this->variations;
     }
 
     /**
-     * @param AntiMattr\Common\Product\Variant
+     * @param AntiMattr\Common\Product\VariationInterface
      *
      * @return bool
      */
-    public function hasVariant(Variant $variant)
+    public function hasVariation(VariationInterface $variation)
     {
-        return $this->variants->contains($variant);
+        return $this->variations->contains($variation);
+    }
+
+    /**
+     * @param AntiMattr\Common\Product\VariationInterface
+     *
+     * @return bool
+     */
+    public function isVariationUnique(VariationInterface $variation)
+    {
+        if ($this->variations->isEmpty()) {
+            return true;
+        }
+
+        return $this->variations->forAll(function ($key, $element) use ($variation) {
+            if ($variation->getUniqueIdentifier() === $element->getUniqueIdentifier() && $variation !== $element) {
+                return false;
+            }
+
+            return true;
+        });
+    }
+
+    /**
+     * @param AntiMattr\Common\Product\VariationInterface
+     *
+     * @throws OutOfBoundsException
+     */
+    public function removeVariation(VariationInterface $variation)
+    {
+        $success = $this->variations->removeElement($variation);
+
+        if (!$success) {
+            throw new OutOfBoundsException('Product::variations do not contain variation to remove');
+        }
     }
 
     /**
      * @param Doctrine\Common\Collections\Collection
      */
-    public function setVariants(Collection $variants)
+    public function setVariations(Collection $variations)
     {
-        $this->variants = $variants;
+        $this->variations = $variations;
     }
 
      /**

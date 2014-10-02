@@ -1,3 +1,5 @@
+# DO NOT USE - IN DEVELOPMENT
+
 common-product
 ==============
 
@@ -10,6 +12,84 @@ Use composer to install
 
 ```bash
 composer install
+```
+
+Model
+=====
+
+```javascript
+/* 
+ * A configurable Product has Attributes (ex. size, color)
+ * Those Attributes have Options (ex. red, blue, small, medium)
+ * A configurable Product has Variations which are unique combinations of Options. 
+ */
+
+Product = {
+  attributes: [
+    Attribute,  // color
+    Attribute,  // size
+  ],
+  createdAt: Date,
+  currency: string, // USD
+  description: string,
+  height: int, // Smallest unit for measurement system
+  id: string || int,
+  images: [
+    Image,
+    Image,
+    Image,
+  ],
+  length: int, // Smallest unit for measurement system
+  price: int, // Smallest unit for currency
+  publishedAt: Date,
+  quantity: int,
+  sku: string,
+  status: string,
+  title: string,
+  updatedAt: Date,  
+  variations: [
+    Variation,  // color_red size_small (an object containing to Variants, one for color red and one for size medium)
+    Variation,  // color_red size_medium
+    Variation,  // color_red size_large
+    Variation,  // color_blue size_small
+    Variation,  // color_blue size_medium
+    Variation   // color_blue size_large
+  ],
+  weight: int, // Smallest unit for measurement system
+  width: int, // Smallest unit for measurement system
+};
+
+Attribute {
+  id: 'id',
+  name: 'Color',
+  options: [  
+    Option,  // red
+    Option,  // orange
+    Option,  // yellow
+    Option,  // green
+    Option,  // blue
+    Option,  // indigo
+    Option,  // violet
+  ]  
+};
+
+Option {
+  attribute: Attribute, // ReferenceOne
+  value: 'Red', 
+  uniqueIdentifier: 'color_red', // Concatenate Attribute name and variant value. This ensures there can be only one "red".
+  variation: Variation,
+};
+
+Variation extends Product {
+  image: Image,
+  options: [ // A single permutation of options creating a unique mapping of options
+    Option,  // color_red
+    Option,  // size_medium
+  ],
+  position: int, // Default sort order for Variations,
+  product: Product, // Parent Product
+  uniqueIdentifier: 'color_red_size_medium', // Concatenate Option::uniqueIdentifier  
+};
 ```
 
 Pull Requests

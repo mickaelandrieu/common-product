@@ -16,13 +16,16 @@ use InvalidArgumentException;
 /**
  * @author Matthew Fitzgerald <matthewfitz@gmail.com>
  */
-class Image
+class Image implements ImageInterface
 {
     /** @var string */
     protected $id;
 
     /** @var int */
     protected $position;
+
+    /** @var AntiMattr\Common\Product\ProductInterface */
+    protected $product;
 
     /** @var string */
     protected $source;
@@ -63,6 +66,22 @@ class Image
         }
 
         $this->position = $position;
+    }
+
+    /**
+     * @return AntiMattr\Common\Product\ProductInterface
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param AntiMattr\Common\Product\ProductInterface
+     */
+    public function setProduct(ProductInterface $product)
+    {
+        $this->product = $product;
     }
 
     /**

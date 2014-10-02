@@ -20,6 +20,35 @@ use Doctrine\Common\Collections\Collection;
 interface ProductInterface
 {
     /**
+     * @param AntiMattr\Common\Product\AttributeInterface
+     */
+    public function addAttribute(AttributeInterface $attribute);
+
+    /**
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getAttributes();
+
+    /**
+     * @param AntiMattr\Common\Product\AttributeInterface
+     *
+     * @return bool
+     */
+    public function hasAttribute(AttributeInterface $attribute);
+
+    /**
+     * @param AntiMattr\Common\Product\AttributeInterface
+     *
+     * @throws OutOfBoundsException
+     */
+    public function removeAttribute(AttributeInterface $attribute);
+
+    /**
+     * @param Doctrine\Common\Collections\Collection
+     */
+    public function setAttributes(Collection $attributes);
+
+    /**
      * @return DateTime
      */
     public function getCreatedAt();
@@ -60,9 +89,28 @@ interface ProductInterface
     public function setId($id);
 
     /**
+     * @param AntiMattr\Common\Product\ImageInterface
+     */
+    public function addImage(ImageInterface $image);
+
+    /**
      * @return Doctrine\Common\Collections\Collection
      */
     public function getImages();
+
+    /**
+     * @param AntiMattr\Common\Product\ImageInterface
+     *
+     * @return bool
+     */
+    public function hasImage(ImageInterface $image);
+
+    /**
+     * @param AntiMattr\Common\Product\ImageInterface
+     *
+     * @throws OutOfBoundsException
+     */
+    public function removeImage(ImageInterface $image);
 
     /**
      * @param Doctrine\Common\Collections\Collection
@@ -130,14 +178,33 @@ interface ProductInterface
     public function setUpdatedAt(DateTime $updatedAt);
 
     /**
+     * @param AntiMattr\Common\Product\VariationInterface
+     */
+    public function addVariation(VariationInterface $variant);
+
+    /**
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getVariants();
+    public function getVariations();
+
+    /**
+     * @param AntiMattr\Common\Product\VariationInterface
+     *
+     * @return bool
+     */
+    public function hasVariation(VariationInterface $variation);
+
+    /**
+     * @param AntiMattr\Common\Product\VariationInterface
+     *
+     * @throws OutOfBoundsException
+     */
+    public function removeVariation(VariationInterface $variation);
 
     /**
      * @param Doctrine\Common\Collections\Collection
      */
-    public function setVariants(Collection $variants);
+    public function setVariations(Collection $variants);
 
     /**
      * @return int
