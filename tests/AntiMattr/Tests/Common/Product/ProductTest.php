@@ -26,6 +26,7 @@ class ProductTest extends AntiMattrTestCase
         $this->assertNull($this->product->getId());
         $this->assertNotNull($this->product->getImages());
         $this->assertNull($this->product->getLength());
+        $this->assertNull($this->product->getMsrp());
         $this->assertNull($this->product->getPrice());
         $this->assertNull($this->product->getPublishedAt());
         $this->assertNull($this->product->getQuantity());
@@ -109,6 +110,10 @@ class ProductTest extends AntiMattrTestCase
         $length = 3;
         $this->product->setLength($length);
         $this->assertEquals($length, $this->product->getLength());
+
+        $msrp = 88;
+        $this->product->setMsrp($msrp);
+        $this->assertEquals($msrp, $this->product->getMsrp());
 
         $price = 100;
         $this->product->setPrice($price);
@@ -266,6 +271,15 @@ class ProductTest extends AntiMattrTestCase
 
         $this->product->addVariation($variation4);
         $this->assertFalse($this->product->isVariationUnique($variation3Duplicate));
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetMsrpWithDecimalThrowsInvalidArgumentException()
+    {
+        $decimal = 100.00;
+        $this->product->setMsrp($decimal);
     }
 
     /**

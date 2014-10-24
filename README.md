@@ -40,6 +40,7 @@ Product = {
     Image,
   ],
   length: int, // Smallest unit for measurement system
+  msrp: int, // Smallest unit for currency
   price: int, // Smallest unit for currency
   publishedAt: Date,
   quantity: int,

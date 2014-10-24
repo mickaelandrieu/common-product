@@ -47,6 +47,9 @@ class Product implements ProductInterface
     protected $length;
 
     /** @var int */
+    protected $msrp;
+
+    /** @var int */
     protected $price;
 
     /** @var DateTime */
@@ -288,6 +291,28 @@ class Product implements ProductInterface
         }
 
         $this->length = $length;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMsrp()
+    {
+        return $this->msrp;
+    }
+
+    /**
+     * @param int
+     *
+     * @throws InvalidArgumentException
+     */
+    public function setMsrp($msrp)
+    {
+        if (!is_int($msrp)) {
+            throw new InvalidArgumentException('Product::msrp must be an integer');
+        }
+
+        $this->msrp = $msrp;
     }
 
     /**

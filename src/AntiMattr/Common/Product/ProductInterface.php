@@ -128,6 +128,30 @@ interface ProductInterface
     public function setLength($length);
 
     /**
+     * @return int
+     */
+    public function getMsrp();
+
+    /**
+     * @param int
+     *
+     * @throws InvalidArgumentException
+     */
+    public function setMsrp($msrp);
+
+    /**
+     * @return int
+     */
+    public function getPrice();
+
+    /**
+     * @param int
+     *
+     * @throws InvalidArgumentException
+     */
+    public function setPrice($price);
+
+    /**
      * @return DateTime
      */
     public function getPublishedAt();
