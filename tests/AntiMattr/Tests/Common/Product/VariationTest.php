@@ -20,6 +20,7 @@ class VariationTest extends AntiMattrTestCase
         $this->assertInstanceOf('AntiMattr\Common\Product\Product', $this->variation);
         $this->assertInstanceOf('AntiMattr\Common\Product\ProductInterface', $this->variation);
         $this->assertNull($this->variation->getImage());
+        $this->assertNotNull($this->variation->getMeta());
         $this->assertNotNull($this->variation->getOptions());
         $this->assertNull($this->variation->getPosition());
         $this->assertNull($this->variation->getProduct());
@@ -37,6 +38,10 @@ class VariationTest extends AntiMattrTestCase
         $this->variation->setImage($image);
 
         $this->assertEquals($image, $this->variation->getImage());
+
+        $meta = $this->getMock('ArrayAccess');
+        $this->variation->setMeta($meta);
+        $this->assertEquals($meta, $this->variation->getMeta());
 
         $options = $this->getMock('Doctrine\Common\Collections\Collection');
         $this->variation->setOptions($options);

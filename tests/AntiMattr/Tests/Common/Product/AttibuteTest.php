@@ -19,6 +19,7 @@ class AttibuteTest extends AntiMattrTestCase
         $this->assertInstanceOf('AntiMattr\Common\Product\AttributeInterface', $this->attribute);
         $this->assertEquals('', $this->attribute->getCanonicalName());
         $this->assertNull($this->attribute->getId());
+        $this->assertNotNull($this->attribute->getMeta());
         $this->assertNull($this->attribute->getName());
         $this->assertNotNull($this->attribute->getOptions());
     }
@@ -28,6 +29,10 @@ class AttibuteTest extends AntiMattrTestCase
         $id = 'id';
         $this->attribute->setId($id);
         $this->assertEquals($id, $this->attribute->getId());
+
+        $meta = $this->getMock('ArrayAccess');
+        $this->attribute->setMeta($meta);
+        $this->assertEquals($meta, $this->attribute->getMeta());
 
         $name = 'name';
         $this->attribute->setName($name);

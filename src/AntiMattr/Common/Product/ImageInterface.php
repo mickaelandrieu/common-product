@@ -11,6 +11,8 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
+
 /**
  * @author Matthew Fitzgerald <matthewfitz@gmail.com>
  */
@@ -25,6 +27,16 @@ interface ImageInterface
      * @param string
      */
     public function setId($id);
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta();
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta);
 
     /**
      * @return int

@@ -11,6 +11,7 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -34,6 +35,16 @@ interface AttributeInterface
      * @param string
      */
     public function setId($id);
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta();
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta);
 
     /**
      * @return string

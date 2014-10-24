@@ -11,6 +11,7 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -45,6 +46,9 @@ class Product implements ProductInterface
 
     /** @var int */
     protected $length;
+
+    /** @var ArrayAccess */
+    protected $meta;
 
     /** @var int */
     protected $msrp;
@@ -83,6 +87,7 @@ class Product implements ProductInterface
     {
         $this->attributes = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->meta = new Meta();
         $this->variations = new ArrayCollection();
     }
 
@@ -291,6 +296,22 @@ class Product implements ProductInterface
         }
 
         $this->length = $length;
+    }
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta)
+    {
+        $this->meta = $meta;
     }
 
     /**

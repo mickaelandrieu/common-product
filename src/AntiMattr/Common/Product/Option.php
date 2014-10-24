@@ -11,6 +11,8 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
+
 /**
  * @author Matthew Fitzgerald <matthewfitz@gmail.com>
  */
@@ -19,11 +21,19 @@ class Option implements OptionInterface
     /** @var AntiMattr\Common\Product\AttributeInterface */
     protected $attribute;
 
+    /** @var ArrayAccess */
+    protected $meta;
+
     /** @var string */
     protected $value;
 
     /** @var AntiMattr\Common\Product\VariationInterface */
     protected $variation;
+
+    public function __construct()
+    {
+        $this->meta = new Meta();
+    }
 
     /**
      * @return AntiMattr\Common\Product\AttributeInterface
@@ -56,6 +66,22 @@ class Option implements OptionInterface
         $value = preg_replace("/[\s_]+/", " ", $value);
         // Convert whitespaces and dash to underscore
         return preg_replace("/[\s-]/", "_", $value);
+    }
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta)
+    {
+        $this->meta = $meta;
     }
 
     /**

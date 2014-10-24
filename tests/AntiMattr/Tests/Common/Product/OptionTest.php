@@ -18,6 +18,7 @@ class OptionTest extends AntiMattrTestCase
     {
         $this->assertInstanceOf('AntiMattr\Common\Product\OptionInterface', $this->option);
         $this->assertNull($this->option->getAttribute());
+        $this->assertNotNull($this->option->getMeta());
         $this->assertNull($this->option->getValue());
         $this->assertEquals('', $this->option->getCanonicalValue());
         $this->assertNull($this->option->getVariation());
@@ -28,6 +29,10 @@ class OptionTest extends AntiMattrTestCase
         $attribute = $this->buildMock('AntiMattr\Common\Product\Attribute');
         $this->option->setAttribute($attribute);
         $this->assertEquals($attribute, $this->option->getAttribute());
+
+        $meta = $this->getMock('ArrayAccess');
+        $this->option->setMeta($meta);
+        $this->assertEquals($meta, $this->option->getMeta());
 
         $value = 'value';
         $this->option->setValue($value);

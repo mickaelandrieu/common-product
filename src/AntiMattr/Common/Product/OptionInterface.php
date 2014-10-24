@@ -11,6 +11,8 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
+
 /**
  * @author Matthew Fitzgerald <matthewfitz@gmail.com>
  */
@@ -32,6 +34,16 @@ interface OptionInterface
      * @return string
      */
     public function getCanonicalValue();
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta();
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta);
 
     /**
      * Alphanumeric underscore

@@ -11,6 +11,7 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use OutOfBoundsException;
@@ -23,6 +24,9 @@ class Attribute implements AttributeInterface
     /** @var string */
     protected $id;
 
+    /** @var ArrayAccess */
+    protected $meta;
+
     /** @var string */
     protected $name;
 
@@ -31,6 +35,7 @@ class Attribute implements AttributeInterface
 
     public function __construct()
     {
+        $this->meta = new Meta();
         $this->options = new ArrayCollection();
     }
 
@@ -65,6 +70,22 @@ class Attribute implements AttributeInterface
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta)
+    {
+        $this->meta = $meta;
     }
 
     /**

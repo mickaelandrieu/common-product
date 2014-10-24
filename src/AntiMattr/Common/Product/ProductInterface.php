@@ -11,6 +11,7 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
 
@@ -126,6 +127,16 @@ interface ProductInterface
      * @param int
      */
     public function setLength($length);
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta();
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta);
 
     /**
      * @return int

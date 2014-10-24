@@ -18,6 +18,7 @@ class ImageTest extends AntiMattrTestCase
     {
         $this->assertInstanceOf('AntiMattr\Common\Product\ImageInterface', $this->image);
         $this->assertNull($this->image->getId());
+        $this->assertNotNull($this->image->getMeta());
         $this->assertNull($this->image->getPosition());
         $this->assertNull($this->image->getProduct());
         $this->assertNull($this->image->getSource());
@@ -28,6 +29,10 @@ class ImageTest extends AntiMattrTestCase
         $id = 'id';
         $this->image->setId($id);
         $this->assertEquals($id, $this->image->getId());
+
+        $meta = $this->getMock('ArrayAccess');
+        $this->image->setMeta($meta);
+        $this->assertEquals($meta, $this->image->getMeta());
 
         $position = 1;
         $this->image->setPosition($position);

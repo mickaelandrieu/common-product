@@ -11,6 +11,7 @@
 
 namespace AntiMattr\Common\Product;
 
+use ArrayAccess;
 use InvalidArgumentException;
 
 /**
@@ -21,6 +22,9 @@ class Image implements ImageInterface
     /** @var string */
     protected $id;
 
+    /** @var ArrayAccess */
+    protected $meta;
+
     /** @var int */
     protected $position;
 
@@ -29,6 +33,11 @@ class Image implements ImageInterface
 
     /** @var string */
     protected $source;
+
+    public function __construct()
+    {
+        $this->meta = new Meta();
+    }
 
     /**
      * @return string
@@ -44,6 +53,22 @@ class Image implements ImageInterface
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return ArrayAccess
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+
+    /**
+     * @param ArrayAccess
+     */
+    public function setMeta(ArrayAccess $meta)
+    {
+        $this->meta = $meta;
     }
 
     /**

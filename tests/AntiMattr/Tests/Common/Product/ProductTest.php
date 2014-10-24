@@ -26,6 +26,7 @@ class ProductTest extends AntiMattrTestCase
         $this->assertNull($this->product->getId());
         $this->assertNotNull($this->product->getImages());
         $this->assertNull($this->product->getLength());
+        $this->assertNotNull($this->product->getMeta());
         $this->assertNull($this->product->getMsrp());
         $this->assertNull($this->product->getPrice());
         $this->assertNull($this->product->getPublishedAt());
@@ -110,6 +111,10 @@ class ProductTest extends AntiMattrTestCase
         $length = 3;
         $this->product->setLength($length);
         $this->assertEquals($length, $this->product->getLength());
+
+        $meta = $this->getMock('ArrayAccess');
+        $this->product->setMeta($meta);
+        $this->assertEquals($meta, $this->product->getMeta());
 
         $msrp = 88;
         $this->product->setMsrp($msrp);
