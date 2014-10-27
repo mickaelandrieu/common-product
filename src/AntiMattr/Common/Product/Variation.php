@@ -35,7 +35,7 @@ class Variation extends Product implements VariationInterface
 
     public function __construct()
     {
-        $this->meta = new Meta();
+        parent::__construct();
         $this->options = new ArrayCollection();
     }
 
