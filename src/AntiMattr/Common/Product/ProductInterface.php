@@ -70,6 +70,15 @@ interface ProductInterface
     public function setDescription($description);
 
     /**
+     * @return string
+     */
+    public function getDimensionUnit();
+    /**
+     * @param string
+     */
+    public function setDimensionUnit($dimensionUnit);
+
+    /**
      * @return int
      */
     public function getHeight();
@@ -270,6 +279,16 @@ interface ProductInterface
      * @param int
      */
     public function setWeight($weight);
+
+    /**
+     * @return string
+     */
+    public function getWeightUnit();
+
+    /**
+     * @param string
+     */
+    public function setWeightUnit($weightUnit);
 
      /**
      * @return int

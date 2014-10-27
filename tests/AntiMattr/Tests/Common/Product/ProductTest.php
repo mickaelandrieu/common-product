@@ -22,6 +22,7 @@ class ProductTest extends AntiMattrTestCase
         $this->assertNull($this->product->getCreatedAt());
         $this->assertNull($this->product->getCurrency());
         $this->assertNull($this->product->getDescription());
+        $this->assertNull($this->product->getDimensionUnit());
         $this->assertNull($this->product->getHeight());
         $this->assertNull($this->product->getId());
         $this->assertNotNull($this->product->getImages());
@@ -38,6 +39,7 @@ class ProductTest extends AntiMattrTestCase
         $this->assertNull($this->product->getUpdatedAt());
         $this->assertNotNull($this->product->getVariations());
         $this->assertNull($this->product->getWeight());
+        $this->assertNull($this->product->getWeightUnit());
         $this->assertNull($this->product->getWidth());
     }
 
@@ -71,6 +73,10 @@ class ProductTest extends AntiMattrTestCase
         $description = 'description';
         $this->product->setDescription($description);
         $this->assertEquals($description, $this->product->getDescription());
+
+        $dimensionUnit = 'dimensionUnit';
+        $this->product->setDimensionUnit($dimensionUnit);
+        $this->assertEquals($dimensionUnit, $this->product->getDimensionUnit());
 
         $height = 2;
         $this->product->setHeight($height);
@@ -189,6 +195,10 @@ class ProductTest extends AntiMattrTestCase
         $weight = 4;
         $this->product->setWeight($weight);
         $this->assertEquals($weight, $this->product->getWeight());
+
+        $weightUnit = 'weightUnit';
+        $this->product->setWeightUnit($weightUnit);
+        $this->assertEquals($weightUnit, $this->product->getWeightUnit());
 
         $width = 5;
         $this->product->setWidth($width);

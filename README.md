@@ -32,6 +32,7 @@ Product = {
   createdAt: Date,
   currency: string, // USD
   description: string,
+  dimensionUnit: string, // For Height, Length, Width
   height: int, // Smallest unit for measurement system
   id: string || int,
   images: [
@@ -59,6 +60,7 @@ Product = {
     Variation   // color_blue size_large
   ],
   weight: int, // Smallest unit for measurement system
+  weigthUnit: string,
   width: int, // Smallest unit for measurement system
 };
 

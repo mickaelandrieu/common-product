@@ -35,6 +35,9 @@ class Product implements ProductInterface
     /** @var string */
     protected $description;
 
+    /** @var string */
+    protected $dimensionUnit;
+
     /** @var int */
     protected $height;
 
@@ -85,6 +88,9 @@ class Product implements ProductInterface
 
     /** @var int */
     protected $weight;
+
+    /** @var string */
+    protected $weightUnit;
 
     /** @var int */
     protected $width;
@@ -191,6 +197,22 @@ class Product implements ProductInterface
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDimensionUnit()
+    {
+        return $this->dimensionUnit;
+    }
+
+    /**
+     * @param string
+     */
+    public function setDimensionUnit($dimensionUnit)
+    {
+        $this->dimensionUnit = $dimensionUnit;
     }
 
     /**
@@ -599,6 +621,22 @@ class Product implements ProductInterface
         }
 
         $this->weight = $weight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeightUnit()
+    {
+        return $this->weightUnit;
+    }
+
+    /**
+     * @param string
+     */
+    public function setWeightUnit($weightUnit)
+    {
+        $this->weightUnit = $weightUnit;
     }
 
     /**
