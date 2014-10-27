@@ -40,6 +40,7 @@ Product = {
     Image,
   ],
   length: int, // Smallest unit for measurement system
+  mpn: string,  
   msrp: int, // Smallest unit for currency
   price: int, // Smallest unit for currency
   publishedAt: Date,
@@ -47,6 +48,7 @@ Product = {
   sku: string,
   status: string,
   title: string,
+  upc: string,  
   updatedAt: Date,  
   variations: [
     Variation,  // color_red size_small (an object containing to Variants, one for color red and one for size medium)

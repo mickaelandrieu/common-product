@@ -50,6 +50,9 @@ class Product implements ProductInterface
     /** @var ArrayAccess */
     protected $meta;
 
+    /** @var string */
+    protected $mpn;
+
     /** @var int */
     protected $msrp;
 
@@ -70,6 +73,9 @@ class Product implements ProductInterface
 
     /** @var string */
     protected $title;
+
+    /** @var string */
+    protected $upc;
 
     /** @var DateTime */
     protected $updatedAt;
@@ -315,6 +321,22 @@ class Product implements ProductInterface
     }
 
     /**
+     * @return string
+     */
+    public function getMpn()
+    {
+        return $this->mpn;
+    }
+
+    /**
+     * @param string
+     */
+    public function setMpn($mpn)
+    {
+        $this->mpn = $mpn;
+    }
+
+    /**
      * @return int
      */
     public function getMsrp()
@@ -442,6 +464,22 @@ class Product implements ProductInterface
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpc()
+    {
+        return $this->upc;
+    }
+
+    /**
+     * @param string
+     */
+    public function setUpc($upc)
+    {
+        $this->upc = $upc;
     }
 
     /**

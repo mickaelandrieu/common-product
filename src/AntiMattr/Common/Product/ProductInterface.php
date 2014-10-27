@@ -139,6 +139,16 @@ interface ProductInterface
     public function setMeta(ArrayAccess $meta);
 
     /**
+     * @return string
+     */
+    public function getMpn();
+
+    /**
+     * @param string
+     */
+    public function setMpn($mpn);
+
+    /**
      * @return int
      */
     public function getMsrp();
@@ -201,6 +211,16 @@ interface ProductInterface
      * @param string
      */
     public function setTitle($title);
+
+    /**
+     * @return string
+     */
+    public function getUpc();
+
+    /**
+     * @param string
+     */
+    public function setUpc($upc);
 
     /**
      * @return DateTime

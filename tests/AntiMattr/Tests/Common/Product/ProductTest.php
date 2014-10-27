@@ -34,6 +34,7 @@ class ProductTest extends AntiMattrTestCase
         $this->assertNull($this->product->getSku());
         $this->assertNull($this->product->getStatus());
         $this->assertNull($this->product->getTitle());
+        $this->assertNull($this->product->getUpc());
         $this->assertNull($this->product->getUpdatedAt());
         $this->assertNotNull($this->product->getVariations());
         $this->assertNull($this->product->getWeight());
@@ -116,6 +117,10 @@ class ProductTest extends AntiMattrTestCase
         $this->product->setMeta($meta);
         $this->assertEquals($meta, $this->product->getMeta());
 
+        $mpn = 'mpn';
+        $this->product->setMpn($mpn);
+        $this->assertEquals($mpn, $this->product->getMpn());
+
         $msrp = 88;
         $this->product->setMsrp($msrp);
         $this->assertEquals($msrp, $this->product->getMsrp());
@@ -143,6 +148,10 @@ class ProductTest extends AntiMattrTestCase
         $title = 'title';
         $this->product->setTitle($title);
         $this->assertEquals($title, $this->product->getTitle());
+
+        $upc = 'upc';
+        $this->product->setUpc($upc);
+        $this->assertEquals($upc, $this->product->getUpc());
 
         $updatedAt = $this->createDateTime();
         $this->product->setUpdatedAt($updatedAt);
