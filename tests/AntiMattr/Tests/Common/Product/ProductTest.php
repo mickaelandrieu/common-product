@@ -23,6 +23,7 @@ class ProductTest extends AntiMattrTestCase
         $this->assertNull($this->product->getCurrency());
         $this->assertNull($this->product->getDescription());
         $this->assertNull($this->product->getDimensionUnit());
+        $this->assertNull($this->product->getEan());
         $this->assertNull($this->product->getHeight());
         $this->assertNull($this->product->getId());
         $this->assertNotNull($this->product->getImages());
@@ -77,6 +78,10 @@ class ProductTest extends AntiMattrTestCase
         $dimensionUnit = 'dimensionUnit';
         $this->product->setDimensionUnit($dimensionUnit);
         $this->assertEquals($dimensionUnit, $this->product->getDimensionUnit());
+
+        $ean = 'ean';
+        $this->product->setEan($ean);
+        $this->assertEquals($ean, $this->product->getEan());
 
         $height = 2;
         $this->product->setHeight($height);

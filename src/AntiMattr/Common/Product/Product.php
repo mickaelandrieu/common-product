@@ -38,6 +38,9 @@ class Product implements ProductInterface
     /** @var string */
     protected $dimensionUnit;
 
+    /** @var string */
+    protected $ean;
+
     /** @var int */
     protected $height;
 
@@ -218,17 +221,17 @@ class Product implements ProductInterface
     /**
      * @return string
      */
-    public function getId()
+    public function getEan()
     {
-        return $this->id;
+        return $this->ean;
     }
 
     /**
      * @param string
      */
-    public function setId($id)
+    public function setEan($ean)
     {
-        $this->id = $id;
+        $this->ean = $ean;
     }
 
     /**
@@ -251,6 +254,22 @@ class Product implements ProductInterface
         }
 
         $this->height = $height;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

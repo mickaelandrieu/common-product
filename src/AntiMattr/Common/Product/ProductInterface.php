@@ -79,6 +79,16 @@ interface ProductInterface
     public function setDimensionUnit($dimensionUnit);
 
     /**
+     * @return string
+     */
+    public function getEan();
+
+    /**
+     * @param string
+     */
+    public function setEan($ean);
+
+    /**
      * @return int
      */
     public function getHeight();
