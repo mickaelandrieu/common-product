@@ -8,11 +8,23 @@ The AntiMattr common product is a library that provides a shared Product interfa
 Installation
 ============
 
-Use composer to install
+Add the following to your composer.json file:
+
+```json
+{
+    "require": {
+        "antimattr/common-product": "dev-master"
+    }
+}
+```
+
+Install the libraries by running:
 
 ```bash
 composer install
 ```
+
+If everything worked, the Common Product can now be found at vendor/antimattr/common-product.
 
 Model
 =====
@@ -112,6 +124,21 @@ Install once with
 Copying /antimattr-common-product/bin/pre-commit.sh -> /antimattr-common-product/bin/../.git/hooks/pre-commit
 ```
 
+Pull Requests
+=============
+
+Pull Requests - PSR Standards
+-----------------------------
+
+Please use the pre-commit hook to fix all code to PSR standards
+
+Install once with
+
+```bash
+./bin/install.sh 
+Copying /antimattr-common-product/bin/pre-commit.sh -> /antimattr-common-product/bin/../.git/hooks/pre-commit
+```
+
 Pull Requests - Testing
 -----------------------
 
@@ -129,3 +156,4 @@ Don't have the pre-commit hook running, please make sure to run the fixer/sniffe
 ```bash
 $ vendor/bin/php-cs-fixer fix src/
 $ vendor/bin/php-cs-fixer fix tests/
+```
