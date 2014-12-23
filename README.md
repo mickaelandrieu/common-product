@@ -1,5 +1,3 @@
-# DO NOT USE - IN DEVELOPMENT
-
 common-product
 ==============
 
@@ -13,7 +11,7 @@ Add the following to your composer.json file:
 ```json
 {
     "require": {
-        "antimattr/common-product": "dev-master"
+        "antimattr/common-product": "~1.0@stable"
     }
 }
 ```
