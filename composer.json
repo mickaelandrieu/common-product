@@ -15,7 +15,7 @@
     "require-dev": {
         "antimattr/test-case": "~1.0@stable",
         "phpunit/phpunit": "~4.0",
-        "fabpot/php-cs-fixer": "dev-master",
+        "fabpot/php-cs-fixer": "dev-master"
     },
     "minimum-stability": "dev",
     "autoload": {
